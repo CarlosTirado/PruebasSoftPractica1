@@ -44,5 +44,29 @@ namespace Practica1Test
 
             Assert.IsTrue(!response);
         }
+
+        [DataTestMethod]
+        [DataRow(3, 4, 5, true)]
+        [DataRow(5, 12, 13, true)]
+        [DataRow(5, 13, 12, true)]
+        [DataRow(12, 13, 5, true)]
+        [DataRow(5, 7, 13, false)]
+        [DataRow(5, 9, 3, false)]
+        [DataRow(13, 7, 5, false)]
+        [DataRow(1, 2, -1, false)]
+        public void Test(
+            int ladoA,
+            int ladoB,
+            int ladoC,
+            bool resultadoEsperado)
+        {
+            var servicio = new VerificarTeoremaDesigualdadTrianguloService();
+            var response = servicio.Verificar(
+                ladoA,
+                ladoB,
+                ladoC);
+
+            Assert.AreEqual(response, resultadoEsperado);
+        }
     }
 }
